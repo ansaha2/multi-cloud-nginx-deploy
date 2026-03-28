@@ -3,12 +3,6 @@ pipeline {
 
     stages {
 
-        stage('Clone Repository') {
-            steps {
-                git 'https://github.com/ansaha2/multi-cloud-nginx-deploy.git'
-            }
-        }
-
         stage('Deploy using Ansible') {
             steps {
                 sh 'ansible-playbook -i inventory.ini deploy.yml'
