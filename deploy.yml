@@ -1,0 +1,17 @@
+- name: Deploy website to servers
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Copy AWS index file
+      copy:
+        src: index-aws.html
+        dest: /var/www/html/index.html
+      when: inventory_hostname == "ankita-app-server"
+
+    - name: Copy Azure index file
+      copy:
+        src: index-azure.html
+        dest: /var/www/html/index.html
+      when: inventory_hostname == "azure-vm"
