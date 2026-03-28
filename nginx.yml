@@ -1,0 +1,41 @@
+- name: Deploy different web pages on AWS and Azure
+  hosts: all
+  become: yes
+
+  tasks:
+
+    - name: Install Nginx
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+
+    - name: Start and enable Nginx
+      service:
+        name: nginx
+        state: started
+        enabled: yes
+
+# ---------- AWS SERVER ----------
+
+- name: Deploy AWS index page
+  hosts: aws
+  become: yes
+
+  tasks:
+    - name: Copy AWS index file
+      copy:
+        src: index-aws.html
+        dest: /var/www/html/index.html
+
+# ---------- AZURE SERVER ----------
+
+- name: Deploy Azure index page
+  hosts: azure
+  become: yes
+
+  tasks:
+    - name: Copy Azure index file
+      copy:
+        src: index-azure.html
+        dest: /var/www/html/index.html
