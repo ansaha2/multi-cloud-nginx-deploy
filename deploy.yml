@@ -15,3 +15,8 @@
         src: index-azure.html
         dest: /var/www/html/index.html
       when: inventory_hostname == "azure-vm"
+
+    - name: Restart nginx
+      service:
+        name: nginx
+        state: restarted

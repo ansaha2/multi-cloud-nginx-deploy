@@ -9,11 +9,5 @@ pipeline {
             }
         }
 
-        stage('Restart Nginx') {
-            steps {
-                sh 'sudo systemctl restart nginx'
-            }
-        }
-
     }
 }
